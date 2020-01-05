@@ -27,9 +27,17 @@ button.addEventListener('click', () => {
   input.value = '';
 }, false);
 
+const unsubscribe = store.subscribe(state => {
+  renderTodos(state.todos.data);
+});
+
+destroy.addEventListener('click', unsubscribe, false);
+
 todoList.addEventListener('click', function (event) {
   const target = event.target as HTMLButtonElement;
   if (target.nodeName.toLowerCase() === 'button') {
     console.log(target);
   }
 });
+
+store.subscribe(state => console.log('STATE:::', state));
